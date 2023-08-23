@@ -2,9 +2,14 @@ package ifpr.pgua.eic.colecaomusicas;
 
 import ifpr.pgua.eic.colecaomusicas.controllers.CadastroArtista;
 import ifpr.pgua.eic.colecaomusicas.controllers.CadastroGenero;
+import ifpr.pgua.eic.colecaomusicas.controllers.ListarArtistas;
 import ifpr.pgua.eic.colecaomusicas.controllers.ListarGeneros;
 import ifpr.pgua.eic.colecaomusicas.controllers.Principal;
-import ifpr.pgua.eic.colecaomusicas.models.Repositorio;
+import ifpr.pgua.eic.colecaomusicas.daos.GeneroDAO;
+import ifpr.pgua.eic.colecaomusicas.daos.JDBCGeneroDAO;
+import ifpr.pgua.eic.colecaomusicas.models.FabricaConexoes;
+import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioArtistas;
+import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioGeneros;
 import io.github.hugoperlin.navigatorfx.BaseAppNavigator;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
 
@@ -13,7 +18,9 @@ import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
  */
 public class App extends BaseAppNavigator {
 
-    private Repositorio repositorio = new Repositorio();
+    private GeneroDAO generoDAO = new JDBCGeneroDAO(FabricaConexoes.getInstance());
+    private RepositorioGeneros repositorioGeneros = new RepositorioGeneros(generoDAO);
+    private RepositorioArtistas repositorioArtistas = new RepositorioArtistas(FabricaConexoes.getInstance());
 
     public static void main(String[] args) {
         launch();
@@ -38,19 +45,25 @@ public class App extends BaseAppNavigator {
         registraTela("CADASTROGENERO",
                   new ScreenRegistryFXML(App.class, 
                       "cadastrar_genero.fxml", 
-                      o->new CadastroGenero(repositorio)
+                      o->new CadastroGenero(repositorioGeneros)
                   )
         );
         registraTela("CADASTROARTISTA",
                   new ScreenRegistryFXML(App.class, 
                       "cadastrar_artista.fxml", 
-                      o->new CadastroArtista(repositorio)
+                      o->new CadastroArtista(repositorioArtistas)
                   )
         );
         registraTela("LISTARGENEROS",
                   new ScreenRegistryFXML(App.class, 
                       "listar_generos.fxml", 
-                      o->new ListarGeneros(repositorio)
+                      o->new ListarGeneros(repositorioGeneros)
+                  )
+        );
+        registraTela("LISTARARTISTAS",
+                  new ScreenRegistryFXML(App.class, 
+                      "listar_artistas.fxml", 
+                      o->new ListarArtistas(repositorioArtistas)
                   )
         );
     }

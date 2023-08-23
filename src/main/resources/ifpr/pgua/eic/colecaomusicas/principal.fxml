@@ -26,8 +26,8 @@
             </padding>
             <Button text="Cadastrar Gênero" onAction="#cadastrarGenero"  prefWidth="200"/>
             <Button text="Listar Gêneros" onAction="#listarGeneros" prefWidth="200"/>
-            <Button text="Cadastrar Artista" onAction="#cadastrarArtista"  prefWidth="200"/>
-            <Button text="Listar Artistas " prefWidth="200"/>
+            <Button text="Cadastrar Artista" onAction="#cadastrarArtista" prefWidth="200"/>
+            <Button text="Listar Artistas " onAction="#listarArtistas" prefWidth="200"/>
 
         </VBox>
     </left>

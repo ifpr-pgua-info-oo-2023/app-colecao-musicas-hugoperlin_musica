@@ -4,22 +4,22 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import ifpr.pgua.eic.colecaomusicas.App;
+import ifpr.pgua.eic.colecaomusicas.models.Artista;
 import ifpr.pgua.eic.colecaomusicas.models.Genero;
 import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioArtistas;
-import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioGeneros;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 
-public class ListarGeneros implements Initializable {
+public class ListarArtistas implements Initializable {
 
     @FXML
-    private ListView<Genero> lstGeneros;
+    private ListView<Artista> lstArtistas;
 
-    private RepositorioGeneros repositorio;
+    private RepositorioArtistas repositorio;
 
-    public ListarGeneros(RepositorioGeneros repositorio){
+    public ListarArtistas(RepositorioArtistas repositorio){
         this.repositorio = repositorio;
     }
 
@@ -31,8 +31,8 @@ public class ListarGeneros implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         
-        lstGeneros.getItems().clear();
-        lstGeneros.getItems().addAll(repositorio.listarGeneros());
+        lstArtistas.getItems().clear();
+        lstArtistas.getItems().addAll(repositorio.listarArtistas());
     
     }
 

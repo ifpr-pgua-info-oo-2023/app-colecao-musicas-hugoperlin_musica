@@ -3,8 +3,10 @@ package ifpr.pgua.eic.colecaomusicas.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ifpr.pgua.eic.colecaomusicas.App;
 import ifpr.pgua.eic.colecaomusicas.models.Genero;
 import ifpr.pgua.eic.colecaomusicas.models.Repositorio;
+import ifpr.pgua.eic.colecaomusicas.repositories.RepositorioGeneros;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,15 +17,15 @@ public class ListarGeneros implements Initializable {
     @FXML
     private ListView<Genero> lstGeneros;
 
-    private Repositorio repositorio;
+    private RepositorioGeneros repositorio;
 
-    public ListarGeneros(Repositorio repositorio){
+    public ListarGeneros(RepositorioGeneros repositorio){
         this.repositorio = repositorio;
     }
 
     @FXML
     void voltar(ActionEvent event) {
-
+        App.popScreen();
     }
 
     @Override
